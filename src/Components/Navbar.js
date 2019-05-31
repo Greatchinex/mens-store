@@ -17,7 +17,7 @@ class Navbar extends Component {
                 </Link>
                 <ul className="navbar-nav align-items-center">
                     <li className="nav-item ml-5"></li>
-                    <Link to="/" className="nav-link"> Products </Link>
+                    <Link to="/" className="nav-link"> Men's Store </Link>
                 </ul>
                 <Link to="/cart" className="ml-auto">
                     <Button>
