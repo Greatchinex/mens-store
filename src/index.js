@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Context } from './ContextApi/Context';
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <Router>
-        <App />
-    </Router>,
+    <Context>
+        <Router>
+            <App />
+        </Router>
+    </Context>,
     document.getElementById('root')
 );
 
