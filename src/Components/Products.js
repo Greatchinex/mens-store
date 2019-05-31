@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ProductConsumer } from '../ContextApi/Context';
+import PropTypes from 'prop-types';
 
 class Products extends Component {
     render() {
@@ -29,6 +30,18 @@ class Products extends Component {
             </ProductWrapper>
         )
     }
+}
+
+
+// PropType definition: Like Models In angular
+Products.propTypes = {
+    product: PropTypes.shape({
+        id:PropTypes.number,
+        img:PropTypes.string,
+        title:PropTypes.string,
+        price:PropTypes.number,
+        inCart:PropTypes.bool
+    }).isRequired
 }
 
 
