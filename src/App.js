@@ -1,13 +1,28 @@
 import React, { Component } from 'react'
 import './App.css';
-import NavBar from './Components/NavBar';
+import { Switch, Route } from 'react-router-dom';
+import Navbar from './Components/Navbar';
+import ProductList from './Components/ProductList';
+import Products from './Components/Products';
+import Cart from './Components/Cart';
+import Details from './Components/Details';
+import Default from './Components/Default';
+
+
 
 export class App extends Component {
   render() {
     return (
-      <div className="App">
-       <NavBar />
-      </div>
+      <React.Fragment>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={ProductList} />
+          <Route path="/details" component={Details} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/products" component={Products} />
+          <Route  component={Default} />
+        </Switch>
+      </React.Fragment>
     )
   }
 }

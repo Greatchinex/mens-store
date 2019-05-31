@@ -1,0 +1,27 @@
+:root {
+    --mainAccent: #ff4081;
+    --lightAccent: #f55a8e;
+    --mainWhite: #f3f3f3;
+    --mainYellow: #ffa400;
+    --mainDark: #232528;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--mainWhite) !important;
+    color: var(--mainDark) !important;
+}
+
+.text-title {
+    font-family: "Permanent-Marker", cursive;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+}
+
+.text-accent {
+    color: var(--mainAccent);
+}
+
+.text-bright {
+    color: var(--lightAccent);
+}
