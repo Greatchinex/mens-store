@@ -11,7 +11,8 @@ class Context extends Component {
     
         this.state = {
             products: [],
-            detailProduct
+            detailProduct,
+            cart: []
         }
     }
 
@@ -36,12 +37,39 @@ class Context extends Component {
         })
     }
 
-    handleDetail = () => {
-        console.log("Details");
+    // Function to get id of products
+    getItem = (id) => {
+        const products = this.state.products.find(item => item.id === id);
+        return products;
+    }
+
+    handleDetail = (id) => {
+        const product = this.getItem(id);
+        this.setState(() => {
+            return { detailProduct : product }
+        })
     }
     
     addToCart = (id) => {
-        console.log(`The Id is ${id}`);
+        // Assign the items in the array 2 a new variable: Because i dont want to mutate the state of the original aaray holding the products
+        let tempProducts =[...this.state.products];
+        // Get the index of each products
+        const index = tempProducts.indexOf(this.getItem(id));
+        // Now i have d index of each products i set a new variable hold the actual product index
+        const product = tempProducts[index];
+        // Now the product is in the cart the inCart state will change from false to true
+        product.inCart = true;
+        // Increase the count of the product since the product is in the cart
+        product.count = 1;
+        // Set the price to the total amount of products
+        product.total = product.price;
+
+        // Change the state of item in the cart: Cause initially the cart is empty
+        this.setState(() => {
+            return {products: tempProducts, cart: [...this.state.cart, product]}
+        }, () => {
+            console.log(this.state);
+        })
     }
 
     render() {

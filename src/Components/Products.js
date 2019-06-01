@@ -11,14 +11,18 @@ class Products extends Component {
         return (
             <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
                 <div className="card">
-                    <div className="img-container p-5" onClick={() => console.log("You Clicked the Product")}>
-                        <Link to="/details">
-                            <img src={img} alt="Products" className="card-img-top" />
-                        </Link>
-                        <button className="cart-btn" disabled={inCart ? true : false} onClick={() => console.log("Added")}> 
-                            {inCart ? (<p className="text-capitalize mb-0" disabled> {" "} In Cart</p>) : (<i className="fa fa-cart-plus" />)}
-                        </button>
-                    </div>
+                    <ProductConsumer>
+                        {(value) => (
+                            <div className="img-container p-5" onClick={() => value.handleDetail(id)}>
+                                <Link to="/details">
+                                    <img src={img} alt="Products" className="card-img-top" />
+                                </Link>
+                                <button className="cart-btn" disabled={inCart ? true : false} onClick={() => value.addToCart(id)}> 
+                                    {inCart ? (<p className="text-capitalize mb-0" disabled> {" "} In Cart</p>) : (<i className="fa fa-cart-plus" />)}
+                                </button>
+                            </div>
+                        )}
+                    </ProductConsumer>
                     {/* Card Footer */}
                     <div className="card-footer d-flex justify-content-between">
                         <p className="align-self-center mb-0"> {title} </p>
