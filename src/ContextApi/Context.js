@@ -12,7 +12,9 @@ class Context extends Component {
         this.state = {
             products: [],
             detailProduct,
-            cart: []
+            cart: [],
+            modalOpen: false,
+            modalProduct: detailProduct
         }
     }
 
@@ -43,6 +45,7 @@ class Context extends Component {
         return products;
     }
 
+    // Function to get the details of a specific product
     handleDetail = (id) => {
         const product = this.getItem(id);
         this.setState(() => {
@@ -50,6 +53,7 @@ class Context extends Component {
         })
     }
     
+    // Function to add products to cart
     addToCart = (id) => {
         // Assign the items in the array 2 a new variable: Because i dont want to mutate the state of the original aaray holding the products
         let tempProducts =[...this.state.products];
@@ -72,12 +76,29 @@ class Context extends Component {
         })
     }
 
+    // Function to open modal
+    openModal = (id) => {
+        const product = this.getItem(id);
+        this.setState(() => {
+            return {modalProduct: product, modalOpen: true}
+        })
+    }
+
+    // Function to Close modal
+    closeModal = () => {
+        this.setState(() => {
+            return {modalOpen: false}
+        })
+    }
+
     render() {
         return (
             <ProductContext.Provider value={{
                 ...this.state, // Destructuring The state
                 handleDetail: this.handleDetail,
-                addToCart: this.addToCart
+                addToCart: this.addToCart,
+                openModal: this.openModal,
+                closeModal: this.closeModal
             }}>
                 {this.props.children}
             </ProductContext.Provider>
