@@ -6,10 +6,14 @@
     --mainDark: #232528;
 }
 
-body {
+html,body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: var(--mainWhite) !important;
     color: var(--mainDark) !important;
+    max-width: 100vw !important;
+    margin: 0 auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
 }
 
 .text-title {
@@ -24,4 +28,23 @@ body {
 
 .text-bright {
     color: var(--lightAccent);
+}
+
+.btn-black {
+    background: transparent;
+    font-size: 0.8em !important;
+    color: var(--mainDark);
+    border-radius: 0 !important;
+    border: 0.1em solid var(--mainDark) !important;
+}
+
+.btn-black:hover {
+    color: var(--mainWhite) !important;
+    background: var(--mainDark) !important;
+}
+
+.cart-icon {
+    cursor: pointer;
+    font-size: 1.2em;
+    color: var(--mainYellow);
 }

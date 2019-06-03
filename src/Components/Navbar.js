@@ -8,12 +8,9 @@ class Navbar extends Component {
     render() {
         return (
             <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5">
-                {/* https://www.iconfinder.com/icons/1243689/call_phone_icon
-                    Creative Commons (Attribution 3.0 Unported);
-                    https://www.iconfinder.com/Makoto_msk 
-                */}
                 <Link to="/">
-                    <img src={Logo} alt="Cloth" className="navbar-brand" />
+                    {/* <img src={Logo} alt="Cloth" className="navbar-brand" /> */}
+                    <i className="fa fa-shirtsinbulk fa-3x navbar-brand"></i>
                 </Link>
                 <ul className="navbar-nav align-items-center">
                     <li className="nav-item ml-5"></li>

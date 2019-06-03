@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import ProductList from './Components/ProductList';
 import Products from './Components/Products';
-import Cart from './Components/Cart';
+import Cart from './Components/Cart/Cart';
 import Details from './Components/Details';
 import Default from './Components/Default';
 import Modal from './Components/Modal';

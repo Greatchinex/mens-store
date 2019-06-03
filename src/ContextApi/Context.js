@@ -13,8 +13,11 @@ class Context extends Component {
             products: [],
             detailProduct,
             cart: [],
+            // cart: storeProducts,
             modalOpen: false,
-            modalProduct: detailProduct
+            modalProduct: detailProduct,
+            cartSubTotal: 0,
+            cartTotal: 0
         }
     }
 
@@ -72,7 +75,7 @@ class Context extends Component {
         this.setState(() => {
             return {products: tempProducts, cart: [...this.state.cart, product]}
         }, () => {
-            console.log(this.state);
+            this.addTotals(); // call back function to add the total price of products immediately after adding product to cart
         })
     }
 
@@ -91,6 +94,98 @@ class Context extends Component {
         })
     }
 
+    // Incrementation
+    increment = (id) => {
+        let tempCart = [...this.state.cart];
+        // find the id of the item being clicked uding the find method
+        const selectProduct = tempCart.find(item => item.id === id);
+        // find the product index
+        const index = tempCart.indexOf(selectProduct);
+        let product = tempCart[index];
+
+        product.count = product.count + 1;
+        product.total = product.count * product.price;
+
+        this.setState(() => {
+            return {cart: [...tempCart]}
+        }, () => {
+            this.addTotals();
+        })
+    }
+
+    decrement = (id) => {
+        let tempCart = [...this.state.cart];
+        // find the id of the item being clicked uding the find method
+        const selectProduct = tempCart.find(item => item.id === id);
+        // find the product index
+        const index = tempCart.indexOf(selectProduct);
+        let product = tempCart[index];
+
+        product.count = product.count - 1;
+        // if the count becomes equal to zero remove it from the cart
+        if(product.count === 0) {
+            this.removeItem(id);
+        } else {
+            product.total = product.count * product.price;
+
+            this.setState(() => {
+                return {cart: [...tempCart]}
+            }, () => {
+                this.addTotals();
+            })
+        }
+    }
+
+    removeItem = (id) => {
+        let tempProducts = [...this.state.products];
+        let tempCart = [...this.state.cart];
+        // filter id of items in the array
+        tempCart = tempCart.filter(item => item.id !== id); // Only the items that do not match the id will be available in the dom
+        // get product index
+        const index = tempProducts.indexOf(this.getItem(id));
+        let removeProduct = tempProducts[index];
+        // Reset some Product properties
+        removeProduct.inCart = false;
+        removeProduct.count = 0;
+        removeProduct.total = 0;
+
+        // set the state to the tempCart and tempProductss
+        this.setState(() => {
+            return{
+                cart: [...tempCart],
+                product: [...tempProducts]
+            }
+        }, () => {
+            this.addTotals();
+        })
+    }
+
+    clearCart = () => {
+        this.setState(() => {
+            return {cart: []}
+        }, () => {
+            /* After Clearing the cart the products need to be set bak to their original state and the
+            setProducts() function has all the default states of the products in the cart  */
+            this.setProducts();
+            // get the current total price of products...Just to avoid future problems with the total price.
+            this.addTotals();
+        })
+    }
+
+    // Add total price of all Products
+    addTotals = () => {
+        let subTotal = 0;
+        // Get all the current items in the cart and add thier current total to the subtotal
+        this.state.cart.map(item => subTotal += item.total); // .total is from the add to cart function
+        const total = subTotal;
+        this.setState(() => {
+            return{
+                cartSubTotal: subTotal,
+                cartTotal: total
+            }
+        })
+    }
+
     render() {
         return (
             <ProductContext.Provider value={{
@@ -98,7 +193,11 @@ class Context extends Component {
                 handleDetail: this.handleDetail,
                 addToCart: this.addToCart,
                 openModal: this.openModal,
-                closeModal: this.closeModal
+                closeModal: this.closeModal,
+                increment: this.increment,
+                decrement: this.decrement,
+                removeItem: this.removeItem,
+                clearCart: this.clearCart
             }}>
                 {this.props.children}
             </ProductContext.Provider>
