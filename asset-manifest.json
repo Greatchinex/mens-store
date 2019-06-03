@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/mens-store/static/css/main.331002a0.chunk.css",
+    "main.js": "/mens-store/static/js/main.cce654cc.chunk.js",
+    "main.js.map": "/mens-store/static/js/main.cce654cc.chunk.js.map",
+    "runtime~main.js": "/mens-store/static/js/runtime~main.52a495e7.js",
+    "runtime~main.js.map": "/mens-store/static/js/runtime~main.52a495e7.js.map",
+    "static/css/2.22a7d4ef.chunk.css": "/mens-store/static/css/2.22a7d4ef.chunk.css",
+    "static/js/2.c0d29d8a.chunk.js": "/mens-store/static/js/2.c0d29d8a.chunk.js",
+    "static/js/2.c0d29d8a.chunk.js.map": "/mens-store/static/js/2.c0d29d8a.chunk.js.map",
+    "index.html": "/mens-store/index.html",
+    "precache-manifest.08ad94d3f5d090b5f2cad93004344ac6.js": "/mens-store/precache-manifest.08ad94d3f5d090b5f2cad93004344ac6.js",
+    "service-worker.js": "/mens-store/service-worker.js",
+    "static/css/2.22a7d4ef.chunk.css.map": "/mens-store/static/css/2.22a7d4ef.chunk.css.map",
+    "static/css/main.331002a0.chunk.css.map": "/mens-store/static/css/main.331002a0.chunk.css.map"
+  }
+}
